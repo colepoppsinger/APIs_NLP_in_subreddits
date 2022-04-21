@@ -41,7 +41,7 @@ These insights can be used to identify marketing opportunities for new and exist
 Using Pushift, posts were scraped from  [`/r/espresso`](https://www.reddit.com/r/espresso)
 [`/r/CraftBeer`](https://www.reddit.com/r/CraftBeer) subreddits then merged into a [dataset](data/author_scrape.csv) which was used for analysis.
 
-Work can be seen here: [webscrape from reddit](01_scrape.ipynb)
+Work can be seen here: [webscrape from reddit](notebooks/01_scrape.ipynb)
 #### Data Cleaning and Preprocessing
 The scraped dataset was cleaned by:
 
@@ -73,9 +73,8 @@ The cleaned data was further processed by engineering features to aid in analysi
  - Words were counted using CountVectorizer to identify frequent words used among the subreddits
  - A custom list of stop words was created to eliminate both frequent words that would NOT be helpful in predicting espresso over CraftBeer (such as new, good, www, http) as well as clear identifiers (such as espresso, beer, coffee) 
  
-    A countvectorized [dataset](data/cvec.csv) was created 
-
-Work can be seen here: [data cleaning and feature engineering](02_clean_fe.ipynb)
+   
+Work can be seen here: [data cleaning and feature engineering](notebooks/02_clean_fe_viz.ipynb)
 
 #### Modeling
 Multiple models were trained to uncover a combination of features and methods that would deliver the highest accuracy on the predictions. 
@@ -85,24 +84,24 @@ The baseline model is 0.5001, meaning that an untrained model would be correct 5
  ##### CountVectorizer + LogisticRegression in Pipeline
  - All three levels of text were attempted in this model, resulting in a top accuracy score of 0.93 (on the title and selftext category)
  
-Work can be seen here: [first model](03_pipe.ipynb)
+Work can be seen here: [first model](notebooks/03_pipe.ipynb)
 
  ##### TfidfVectorizer + DecisionTreeClassifier in Pipeline
  - The most successful title and selftext category was used to train this mostly unsuccessful model. The resulting accuracy score was 0.73, however, this model was surpirisingly accurate predicting true negatives (i.e. correctly predicting CraftBeer) at a rate of 0.98.
     
     
     
-Work can be seen here: [TfidfVec/DecisionTree](04_tfidf_dtc.ipynb)
+Work can be seen here: [TfidfVec/DecisionTree](notebooks/04_tfidf_dtc.ipynb)
 
  ##### Other Model Trials
- - RandomForest 0.87 accuracy - can be seen here: [RandomForest](05_randomforest.ipynb)
- - FeatureUnion 0.91 accuracy - can be seen here: [FeatureUnion](06_feature_union.ipynb)
+ - RandomForest 0.87 accuracy - can be seen here: [RandomForest](notebooks/05_randomforest.ipynb)
+ - FeatureUnion 0.91 accuracy - can be seen here: [FeatureUnion](notebooks/06_feature_union.ipynb)
  
  ##### BEST MODEL: TfidfVectorizer + LogisticRegression in Pipeline
  - The most successful model was created with TfidfVectorizer and LogisticRegressor in a Pipeline. 
 The resulting accuracy score was 0.94
 
-Work can be seen here: [best model TfidfVec/LogReg](07_best_tfidf_lr.ipynb)
+Work can be seen here: [best model TfidfVec/LogReg](notebooks/07_best_tfidf_lr.ipynb)
 
 A predictions [dataset](data/best_preds.csv) was created
 
@@ -114,7 +113,7 @@ A predictions [dataset](data/best_preds.csv) was created
 ![Sentiment scores by subreddit](images/sentiment.png)
 ![Confusion Matrix of most successful model](images/confusion_matrix.png)
 
-Work can be seen here: [more eda for visualizations](08_viz.ipynb) 
+Work can be seen here: [more eda for visualizations](notebooks/02_clean_fe_viz.ipynb) 
 
 ### 2. Insights
 
